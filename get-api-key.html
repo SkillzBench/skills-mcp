@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to get a Skills MCP API key | SkillzBench</title>
+<meta name="description" content="Get an sb_live_ API key for mcp.skillzbench.com in three steps: create a free SkillzBench account, add an agent, mint a key. Then connect Claude Code, Cursor, or any MCP client.">
+<link rel="canonical" href="https://skillzbench.github.io/skills-mcp/get-api-key.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How to get a Skills MCP API key">
+<meta property="og:description" content="Free account → add an agent → mint a key. Under two minutes.">
+<link rel="stylesheet" href="/skills-mcp/style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/skills-mcp/"><strong>Skills MCP</strong></a><a href="/skills-mcp/platform.html">Platform</a><a href="https://skillzbench.com/skills">Directory</a></nav>
+<span class="pill">Keys</span>
+<h1>Get your Skills MCP API key</h1>
+<p class="muted">Three steps, under two minutes. The key looks like <code>sb_live_…</code> and is shown exactly once.</p>
+
+<h2>1 — Create a free account</h2>
+<p>Sign up at <a href="https://skillzbench.com/signup">skillzbench.com/signup</a> and verify your email. Email verification is required before keys can be minted.</p>
+
+<h2>2 — Add an agent</h2>
+<p>Open <a href="https://skillzbench.com/app">skillzbench.com/app</a> and create an agent (for example "work-laptop" or "claude-code"). An agent is one loadout: the set of skills you enable for one client. You can have several — each with its own key and toggles.</p>
+
+<h2>3 — Mint a key</h2>
+<p>On the agent's page, create an API key. Copy it immediately — the site stores only a hash and never shows it again. That's deliberate: a leaked key can be revoked and replaced, not recovered.</p>
+
+<h2>Connect</h2>
+<pre>claude mcp add --transport http skillzbench https://mcp.skillzbench.com/mcp \
+  --header "Authorization: Bearer sb_live_YOUR_KEY"</pre>
+<p>Or use the CLI, which validates the key and writes the config for you:</p>
+<pre>npx skillzbench init   # paste key, get client snippets
+npx skillzbench sync  # list / enable / disable skills</pre>
+
+<h2>Key rules</h2>
+<ul>
+<li><strong>One key per agent.</strong> Scopes: <code>skills:read</code>, <code>skills:toggle</code>, <code>outcomes:write</code>.</li>
+<li><strong>Never in URLs.</strong> The MCP accepts the key only in the <code>Authorization</code> header.</li>
+<li><strong>Rate limits:</strong> 120 requests/minute per key, 30 searches/minute.</li>
+<li><strong>Lost it?</strong> Revoke and mint a new one from the same page.</li>
+</ul>
+
+<footer>SkillzBench · <a href="https://skillzbench.com">skillzbench.com</a> — the trusted, benchmarked directory of agent skills.</footer>
+</div>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"Get a Skills MCP API key","step":[
+{"@type":"HowToStep","name":"Create a free account","text":"Sign up at skillzbench.com/signup and verify your email."},
+{"@type":"HowToStep","name":"Add an agent","text":"Create an agent at skillzbench.com/app — one agent is one skill loadout."},
+{"@type":"HowToStep","name":"Mint a key","text":"Create an API key on the agent page and copy it — it is shown only once."}]}
+</script>
+</body>
+</html>
