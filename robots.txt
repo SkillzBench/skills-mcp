@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://skillzbench.github.io/skills-mcp/sitemap.xml
