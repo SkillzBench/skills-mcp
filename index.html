@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills MCP — one MCP server for every agent skill | SkillzBench</title>
+<meta name="description" content="Skills MCP gives your agent exactly the skills you choose: mcp.skillzbench.com/mcp. Streamable HTTP, one API key, per-agent loadouts. Every skill scanned, license-checked and benchmarked. Connect Claude Code, Cursor, or any MCP client in minutes.">
+<link rel="canonical" href="https://skillzbench.github.io/skills-mcp/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Skills MCP — one MCP server for every agent skill">
+<meta property="og:description" content="Give your agent exactly the skills you choose. Scanned, license-checked, benchmarked. One endpoint, one key.">
+<meta property="og:url" content="https://skillzbench.github.io/skills-mcp/">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/skills-mcp/style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><strong style="color:var(--text)">SkillzBench</strong><a href="/skills-mcp/platform.html">Platform</a><a href="/skills-mcp/get-api-key.html">Get a key</a><a href="https://skillzbench.com/skills">Directory</a><a href="https://skillzbench.com/leaderboard">Leaderboard</a></nav>
+
+<span class="pill">Skills, proven</span>
+<h1>Skills MCP — one server, every skill your agent needs</h1>
+<p class="muted">Connect any MCP client to a curated, benchmarked library of agent skills. Your agent loads exactly what you enable — nothing more.</p>
+<p>
+<a class="cta" href="/skills-mcp/get-api-key.html">Get your API key</a>
+<a class="cta alt" href="https://skillzbench.com/skills">Browse 58 skills</a>
+</p>
+
+<h2>What it is</h2>
+<p><strong>Skills MCP</strong> is a single Model Context Protocol server at <code>mcp.skillzbench.com/mcp</code> that serves the <a href="https://skillzbench.com">SkillzBench</a> skill catalog. Instead of copy-pasting skill files into every project, you connect once and your agent can search, inspect, and load any skill you've enabled — with provenance, license class, and benchmark results attached.</p>
+
+<h2>Connect in under 5 minutes</h2>
+<pre># Claude Code
+claude mcp add --transport http skillzbench https://mcp.skillzbench.com/mcp \
+  --header "Authorization: Bearer sb_live_YOUR_KEY"</pre>
+<pre>{
+  "mcpServers": {
+    "skillzbench": {
+      "type": "http",
+      "url": "https://mcp.skillzbench.com/mcp",
+      "headers": { "Authorization": "Bearer sb_live_YOUR_KEY" }
+    }
+  }
+}</pre>
+<p class="muted">Works with Claude Code, Cursor, Zed, and any client that speaks Streamable HTTP. <a href="/skills-mcp/get-api-key.html">How to get a key →</a></p>
+
+<h2>The tools your agent gets</h2>
+<table>
+<tr><th>Tool</th><th>What it does</th></tr>
+<tr><td><code>whoami</code></td><td>Agent name, plan, enabled counts, autonomy mode</td></tr>
+<tr><td><code>search_skills</code></td><td>Search the full catalog with filters (category, trust, license)</td></tr>
+<tr><td><code>list_enabled</code></td><td>Compact index of this agent's enabled skills</td></tr>
+<tr><td><code>get_skill</code></td><td>Load one SKILL.md — with provenance header</td></tr>
+<tr><td><code>get_skill_info</code></td><td>Summary, benchmark Lift, scan verdict, license</td></tr>
+<tr><td><code>request_enable</code> / <code>request_disable</code></td><td>Toggle skills — instantly on auto agents, one-click human approval otherwise</td></tr>
+</table>
+
+<h2>Why this one is different</h2>
+<ul>
+<li><strong>Advertise many, load one.</strong> Your agent sees only name + description until it loads a skill — context stays small.</li>
+<li><strong>You stay in control.</strong> Agents can only load skills <em>you</em> enabled; enabling is ask-by-default with an approval link.</li>
+<li><strong>Every skill is vetted.</strong> Static scanning for secrets and exfiltration, license classification, two independent LLM judges, and human review before publish.</li>
+<li><strong>Benchmarked, not just listed.</strong> Skills carry a measured <a href="https://skillzbench.com/methodology">Lift score</a> — did the skill actually make a reference agent better at category tasks?</li>
+</ul>
+
+<h2>Skills MCP FAQ</h2>
+<h3 style="margin-top:1.2rem">Is it free?</h3>
+<p>Yes — browsing, the directory, and the MCP with a personal loadout are free during launch.</p>
+<h3>Which clients work?</h3>
+<p>Any MCP client that supports Streamable HTTP with header auth: Claude Code, Cursor, Zed, and custom SDK clients. A zero-dependency CLI (<code>skillzbench init</code>) prints ready-to-paste config.</p>
+<h3>Can skills be dangerous?</h3>
+<p>All published skills pass a deterministic scanner (secrets, hooks, exfiltration URLs, tool breadth) plus two LLM judges; benchmark runs plant canary credentials and quarantine any skill that tries to leak them. See the <a href="https://skillzbench.com/methodology">methodology</a>.</p>
+
+<footer>
+SkillzBench — the trusted, benchmarked directory of agent skills. <a href="https://skillzbench.com">skillzbench.com</a> · <a href="https://github.com/SkillzBench/skills">skills on GitHub</a><br>
+Not affiliated with Anthropic, OpenAI, or any model vendor. Claude, Cursor, and GitHub are trademarks of their owners.
+</footer>
+</div>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SkillzBench Skills MCP","applicationCategory":"DeveloperApplication","operatingSystem":"Any (MCP client)","url":"https://skillzbench.github.io/skills-mcp/","description":"One MCP server for every agent skill: scanned, license-checked, and benchmarked. Streamable HTTP at mcp.skillzbench.com/mcp with per-agent loadouts.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["MCP server (Streamable HTTP)","per-agent skill loadouts","skill search and discovery","benchmark Lift scores","static security scanning","license classification"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is the Skills MCP free?","acceptedAnswer":{"@type":"Answer","text":"Yes — the directory and the MCP with a personal loadout are free during launch."}},
+{"@type":"Question","name":"Which clients can connect to the Skills MCP?","acceptedAnswer":{"@type":"Answer","text":"Any MCP client that supports Streamable HTTP with header auth, including Claude Code, Cursor, Zed, and custom SDK clients."}},
+{"@type":"Question","name":"How are skills vetted?","acceptedAnswer":{"@type":"Answer","text":"Every published skill passes a deterministic static scanner for secrets and exfiltration, license classification, two independent LLM judges, human review, and benchmark runs with canary-credential guards."}}]}
+</script>
+</body>
+</html>
